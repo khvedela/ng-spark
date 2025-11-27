@@ -17,7 +17,8 @@
     "paths": {
       "@ng-spark/signal-store-testing": [
         "packages/signal-store-testing/src/index.ts"
-      ]
+      ],
+      "@ng-spark/forms-x": ["packages/forms-x/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
