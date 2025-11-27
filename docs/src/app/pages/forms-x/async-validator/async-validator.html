@@ -1,0 +1,199 @@
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <h1 class="text-4xl font-bold mb-4">SparkAsyncValidator</h1>
+  <p class="text-lg text-gray-600 mb-8">
+    Debounced async validation with built-in loading states and error handling
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Overview</h2>
+    <p class="mb-4">
+      <code>SparkAsyncValidator</code> provides a simple way to perform asynchronous validation (like checking
+      username availability or email uniqueness) with automatic debouncing and reactive loading/error states.
+    </p>
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+      <p class="font-semibold mb-2">💡 Key Features</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Automatic debouncing - avoids excessive API calls</li>
+        <li>Built-in loading states for better UX</li>
+        <li>Works with Observables and Promises</li>
+        <li>Type-safe error handling</li>
+        <li>Skips validation for empty values</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Basic Usage</h2>
+    <app-code-block [code]="basicUsageCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Validation Functions</h2>
+
+    <h3 class="text-2xl font-semibold mb-3">Using Observables</h3>
+    <app-code-block [code]="observableCode" language="typescript"></app-code-block>
+
+    <h3 class="text-2xl font-semibold mb-3 mt-6">Using Promises</h3>
+    <app-code-block [code]="promiseCode" language="typescript"></app-code-block>
+
+    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+      <p class="font-semibold mb-2">📝 Validation Return Values</p>
+      <p>Your validation function should return:</p>
+      <ul class="list-disc list-inside mt-2">
+        <li><code>null</code> - validation passed, no error</li>
+        <li><code>string</code> or <code>object</code> - validation failed, contains error message/data</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Custom Error Types</h2>
+    <p class="mb-4">Use TypeScript generics to define custom error shapes:</p>
+    <app-code-block [code]="customErrorCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Loading States</h2>
+    <p class="mb-4">Access reactive loading states to provide better UX:</p>
+    <app-code-block [code]="loadingStateCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Integration with Reactive Forms</h2>
+    <p class="mb-4">Use with Angular Reactive Forms via the <code>asValidator()</code> method:</p>
+    <app-code-block [code]="reactiveFormsCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Multiple Validators</h2>
+    <p class="mb-4">Create multiple validators for different fields:</p>
+    <app-code-block [code]="multiFieldCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Configuration Options</h2>
+
+    <div class="overflow-x-auto mb-4">
+      <table class="min-w-full bg-white border border-gray-300">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-4 py-2 border">Option</th>
+            <th class="px-4 py-2 border">Type</th>
+            <th class="px-4 py-2 border">Default</th>
+            <th class="px-4 py-2 border">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="px-4 py-2 border"><code>source</code></td>
+            <td class="px-4 py-2 border">Signal&lt;T&gt;</td>
+            <td class="px-4 py-2 border">-</td>
+            <td class="px-4 py-2 border">Required. The signal to validate</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>validate</code></td>
+            <td class="px-4 py-2 border">Function</td>
+            <td class="px-4 py-2 border">-</td>
+            <td class="px-4 py-2 border">Required. Validation function</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>debounce</code></td>
+            <td class="px-4 py-2 border">number</td>
+            <td class="px-4 py-2 border">300</td>
+            <td class="px-4 py-2 border">Debounce time in milliseconds</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>injector</code></td>
+            <td class="px-4 py-2 border">Injector</td>
+            <td class="px-4 py-2 border">-</td>
+            <td class="px-4 py-2 border">Optional. Angular injector for DI</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Empty Value Handling</h2>
+    <p class="mb-4">
+      SparkAsyncValidator automatically skips validation for empty values (<code>''</code>, <code>null</code>,
+      <code>undefined</code>). This prevents unnecessary API calls and improves performance:
+    </p>
+    <div class="p-4 bg-gray-50 rounded">
+      <code>
+        // These values will NOT trigger validation:<br>
+        username.set('');&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Empty string<br>
+        username.set(null);&nbsp;&nbsp;&nbsp;&nbsp;// Null<br>
+        username.set(undefined); // Undefined
+      </code>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Best Practices</h2>
+    <app-code-block [code]="bestPracticesCode" language="typescript"></app-code-block>
+
+    <div class="space-y-4 mt-4">
+      <div class="bg-green-50 border-l-4 border-green-500 p-4">
+        <p class="font-semibold mb-2">✅ Debounce Timing</p>
+        <p>
+          Use 300-500ms for user input fields. Lower values create too many API calls, higher values feel sluggish.
+        </p>
+      </div>
+
+      <div class="bg-green-50 border-l-4 border-green-500 p-4">
+        <p class="font-semibold mb-2">✅ Loading Indicators</p>
+        <p>Always show loading state to users. It provides feedback that validation is in progress.</p>
+      </div>
+
+      <div class="bg-green-50 border-l-4 border-green-500 p-4">
+        <p class="font-semibold mb-2">✅ Error Handling</p>
+        <p>Handle API errors gracefully. Consider showing "Validation unavailable" instead of crashing.</p>
+      </div>
+
+      <div class="bg-red-50 border-l-4 border-red-500 p-4">
+        <p class="font-semibold mb-2">❌ Avoid Rapid-Fire Validation</p>
+        <p>Don't set debounce too low. Each validation can be an API call - be respectful of backend resources.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">API Reference</h2>
+
+    <h3 class="text-xl font-semibold mb-2">Constructor</h3>
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">new SparkAsyncValidator&lt;T, E&gt;(config: AsyncValidatorConfig&lt;T, E&gt;)</code>
+      <p class="mt-2">Creates a new async validator.</p>
+      <ul class="list-disc list-inside mt-2">
+        <li><code>T</code> - Type of value being validated</li>
+        <li><code>E</code> - Type of error returned (defaults to <code>unknown</code>)</li>
+      </ul>
+    </div>
+
+    <h3 class="text-xl font-semibold mb-2 mt-6">Properties</h3>
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">error: Signal&lt;E | null&gt;</code>
+      <p class="mt-2">Reactive signal containing the validation error, or null if valid.</p>
+    </div>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">isLoading: Signal&lt;boolean&gt;</code>
+      <p class="mt-2">Reactive signal indicating whether validation is in progress.</p>
+    </div>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">status: Signal&lt;ResourceStatus&gt;</code>
+      <p class="mt-2">Reactive signal with detailed status: 'idle' | 'loading' | 'loaded' | 'error'</p>
+    </div>
+
+    <h3 class="text-xl font-semibold mb-2 mt-6">Methods</h3>
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">asValidator(): () => ValidationErrors | null</code>
+      <p class="mt-2">
+        Returns a validator function compatible with Angular Reactive Forms.
+        Returns null while loading or if validation passes.
+      </p>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,180 @@
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <h1 class="text-4xl font-bold mb-4">FormTracker</h1>
+  <p class="text-lg text-gray-600 mb-8">
+    Automatic dirty state tracking for forms with baseline comparison
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Overview</h2>
+    <p class="mb-4">
+      <code>FormTracker</code> automatically tracks changes to your form model by comparing the current state
+      against a baseline snapshot. It provides reactive signals for dirty state and changed fields, perfect for
+      enabling save buttons, showing warnings, and implementing optimized PATCH requests.
+    </p>
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+      <p class="font-semibold mb-2">💡 Key Features</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Automatic dirty state detection</li>
+        <li>Track exactly which fields changed</li>
+        <li>Deep object and array comparison</li>
+        <li>Baseline commit/reset functionality</li>
+        <li>Perfect for PATCH requests</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Basic Usage</h2>
+    <app-code-block [code]="basicUsageCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Tracking Changed Fields</h2>
+    <p class="mb-4">
+      Use <code>dirtyFields()</code> to get only the fields that have changed. Perfect for PATCH requests
+      that send only modified data:
+    </p>
+    <app-code-block [code]="dirtyFieldsCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Nested Objects and Arrays</h2>
+    <p class="mb-4">FormTracker handles deep comparisons automatically:</p>
+    <app-code-block [code]="nestedObjectsCode" language="typescript"></app-code-block>
+
+    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+      <p class="font-semibold mb-2">📝 Note on Nested Changes</p>
+      <p>
+        When a nested property changes, <code>dirtyFields()</code> returns the entire parent object.
+        For example, changing <code>address.city</code> will return the entire <code>user</code> object
+        in dirtyFields. This is intentional and safe for most API update patterns.
+      </p>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">API Methods</h2>
+
+    <h3 class="text-2xl font-semibold mb-3">commit()</h3>
+    <p class="mb-4">
+      Updates the baseline to the current form value. Call this after successful saves or when loading
+      initial data:
+    </p>
+    <div class="p-4 bg-gray-50 rounded mb-4">
+      <code>tracker.commit()</code>
+    </div>
+
+    <h3 class="text-2xl font-semibold mb-3">reset()</h3>
+    <p class="mb-4">
+      Reverts the form signal back to the baseline. Use this to implement "Discard Changes" functionality:
+    </p>
+    <div class="p-4 bg-gray-50 rounded mb-4">
+      <code>tracker.reset()</code>
+    </div>
+
+    <h3 class="text-2xl font-semibold mb-3">isDirty: Signal&lt;boolean&gt;</h3>
+    <p class="mb-4">
+      Reactive signal that returns <code>true</code> when the current form differs from the baseline:
+    </p>
+    <div class="p-4 bg-gray-50 rounded mb-4">
+      <code>tracker.isDirty() // true or false</code>
+    </div>
+
+    <h3 class="text-2xl font-semibold mb-3">dirtyFields: Signal&lt;Partial&lt;T&gt;&gt;</h3>
+    <p class="mb-4">
+      Reactive signal returning an object containing only the changed fields:
+    </p>
+    <div class="p-4 bg-gray-50 rounded mb-4">
+      <code>tracker.dirtyFields() // {{ '{ email: 'new@example.com }' }}</code>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Common Patterns</h2>
+
+    <h3 class="text-2xl font-semibold mb-3">Edit Form with API</h3>
+    <app-code-block [code]="apiPatternCode" language="typescript"></app-code-block>
+
+    <h3 class="text-2xl font-semibold mb-3 mt-8">Navigation Guard</h3>
+    <p class="mb-4">Warn users before navigating away from unsaved changes:</p>
+    <app-code-block [code]="navigationGuardCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Best Practices</h2>
+    <app-code-block [code]="bestPracticesCode" language="typescript"></app-code-block>
+
+    <div class="space-y-4 mt-4">
+      <div class="bg-green-50 border-l-4 border-green-500 p-4">
+        <p class="font-semibold mb-2">✅ Commit After Success</p>
+        <p>Always call <code>commit()</code> after a successful API save to establish a new baseline.</p>
+      </div>
+
+      <div class="bg-green-50 border-l-4 border-green-500 p-4">
+        <p class="font-semibold mb-2">✅ Commit After Load</p>
+        <p>Call <code>commit()</code> after loading data to prevent false dirty states.</p>
+      </div>
+
+      <div class="bg-red-50 border-l-4 border-red-500 p-4">
+        <p class="font-semibold mb-2">❌ Don't Commit on Error</p>
+        <p>Never call <code>commit()</code> if the API save fails - users need to retry.</p>
+      </div>
+
+      <div class="bg-red-50 border-l-4 border-red-500 p-4">
+        <p class="font-semibold mb-2">❌ Don't Mutate Directly</p>
+        <p>Always use immutable updates with the signal. Never mutate nested objects directly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">How It Works</h2>
+    <p class="mb-4">
+      FormTracker uses <code>structuredClone</code> (with a polyfill for older environments) to create deep
+      copies of your form state. This ensures that baseline comparisons are accurate and that mutations don't
+      leak between the current state and the baseline.
+    </p>
+    <p class="mb-4">
+      The comparison is performed using deep equality checks that handle:
+    </p>
+    <ul class="list-disc list-inside space-y-2 mb-4">
+      <li>Nested objects</li>
+      <li>Arrays and array mutations</li>
+      <li>Date objects</li>
+      <li>Null and undefined values</li>
+      <li>Mixed data types</li>
+    </ul>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">API Reference</h2>
+
+    <h3 class="text-xl font-semibold mb-2">Constructor</h3>
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">new FormTracker&lt;T&gt;(source: WritableSignal&lt;T&gt;)</code>
+      <p class="mt-2">Creates a new FormTracker that monitors the given signal. The initial value is captured as the baseline.</p>
+    </div>
+
+    <h3 class="text-xl font-semibold mb-2 mt-6">Properties</h3>
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">isDirty: Signal&lt;boolean&gt;</code>
+      <p class="mt-2">Reactive signal indicating whether the form has changed from baseline.</p>
+    </div>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">dirtyFields: Signal&lt;Partial&lt;T&gt;&gt;</code>
+      <p class="mt-2">Reactive signal containing only the fields that have changed.</p>
+    </div>
+
+    <h3 class="text-xl font-semibold mb-2 mt-6">Methods</h3>
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">commit(): void</code>
+      <p class="mt-2">Updates the baseline snapshot to match the current signal value.</p>
+    </div>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">reset(): void</code>
+      <p class="mt-2">Reverts the source signal back to the baseline snapshot.</p>
+    </div>
+  </section>
+</div>

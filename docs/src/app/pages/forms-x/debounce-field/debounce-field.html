@@ -1,0 +1,214 @@
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <h1 class="text-4xl font-bold mb-4">DebounceFieldDirective</h1>
+  <p class="text-lg text-gray-600 mb-8">
+    Two-way data binding with configurable debounce for signals
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Overview</h2>
+    <p class="mb-4">
+      The <code>DebounceFieldDirective</code> provides two-way binding between input/textarea elements and signals,
+      with automatic debouncing to reduce unnecessary updates and improve performance.
+    </p>
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+      <p class="font-semibold mb-2">💡 Key Features</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li>True two-way binding with signals</li>
+        <li>Configurable debounce time</li>
+        <li>Automatic blur handling (immediate update)</li>
+        <li>Optional value transformation</li>
+        <li>Works with input and textarea elements</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Basic Usage</h2>
+    <app-code-block [code]="basicUsageCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Two-Way Binding</h2>
+    <p class="mb-4">
+      The directive provides true two-way binding - changes in the input update the signal (debounced),
+      and programmatic signal changes update the input immediately:
+    </p>
+    <app-code-block [code]="twoWayBindingCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Value Transformation</h2>
+    <p class="mb-4">
+      Transform user input before it reaches your signal using the <code>[transform]</code> input:
+    </p>
+    <app-code-block [code]="transformCode" language="typescript"></app-code-block>
+
+    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+      <p class="font-semibold mb-2">📝 Common Transformations</p>
+      <ul class="list-disc list-inside">
+        <li><code>val => val.trim()</code> - Remove whitespace</li>
+        <li><code>val => val.toLowerCase()</code> - Lowercase</li>
+        <li><code>val => val.toUpperCase()</code> - Uppercase</li>
+        <li><code>val => val.replace(/[^0-9]/g, '')</code> - Numbers only</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Use Cases</h2>
+
+    <h3 class="text-2xl font-semibold mb-3">Search Input</h3>
+    <p class="mb-4">Perfect for search boxes that trigger API calls:</p>
+    <app-code-block [code]="searchExampleCode" language="typescript"></app-code-block>
+
+    <h3 class="text-2xl font-semibold mb-3 mt-8">Autocomplete</h3>
+    <p class="mb-4">Build autocomplete dropdowns with minimal API calls:</p>
+    <app-code-block [code]="autocompleteCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Blur Behavior</h2>
+    <p class="mb-4">
+      The directive handles blur events specially - when the user leaves the field, the signal updates
+      <strong>immediately</strong> without waiting for the debounce timer:
+    </p>
+    <app-code-block [code]="blurBehaviorCode" language="typescript"></app-code-block>
+
+    <div class="bg-green-50 border-l-4 border-green-500 p-4 mt-4">
+      <p class="font-semibold mb-2">✨ Why This Matters</p>
+      <p>
+        This prevents the common UX issue where users type something, click "Submit", but the form
+        doesn't see the latest value because the debounce hasn't fired yet. Blur events flush the pending value.
+      </p>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Textarea Support</h2>
+    <p class="mb-4">The directive works with textareas too:</p>
+    <app-code-block [code]="textareaCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Configuration</h2>
+
+    <div class="overflow-x-auto mb-4">
+      <table class="min-w-full bg-white border border-gray-300">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-4 py-2 border">Input</th>
+            <th class="px-4 py-2 border">Type</th>
+            <th class="px-4 py-2 border">Default</th>
+            <th class="px-4 py-2 border">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="px-4 py-2 border"><code>debounceField</code></td>
+            <td class="px-4 py-2 border">WritableSignal&lt;T&gt;</td>
+            <td class="px-4 py-2 border">-</td>
+            <td class="px-4 py-2 border">Required. The signal to bind</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>debounceTime</code></td>
+            <td class="px-4 py-2 border">number</td>
+            <td class="px-4 py-2 border">300</td>
+            <td class="px-4 py-2 border">Debounce duration in ms</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>transform</code></td>
+            <td class="px-4 py-2 border">(val: string) => T</td>
+            <td class="px-4 py-2 border">-</td>
+            <td class="px-4 py-2 border">Optional transformation function</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Best Practices</h2>
+    <app-code-block [code]="bestPracticesCode" language="typescript"></app-code-block>
+
+    <div class="space-y-4 mt-4">
+      <div class="bg-green-50 border-l-4 border-green-500 p-4">
+        <p class="font-semibold mb-2">✅ Choose Appropriate Debounce Times</p>
+        <ul class="list-disc list-inside">
+          <li><strong>Search/Filter:</strong> 200-400ms</li>
+          <li><strong>API calls:</strong> 400-600ms</li>
+          <li><strong>Local operations:</strong> 150-300ms</li>
+        </ul>
+      </div>
+
+      <div class="bg-green-50 border-l-4 border-green-500 p-4">
+        <p class="font-semibold mb-2">✅ Combine with Validation</p>
+        <p>Use with <code>SparkAsyncValidator</code> for debounced validation of user input.</p>
+      </div>
+
+      <div class="bg-red-50 border-l-4 border-red-500 p-4">
+        <p class="font-semibold mb-2">❌ Don't Mix with [(ngModel)]</p>
+        <p>The directive provides its own two-way binding. Don't use both on the same element.</p>
+      </div>
+
+      <div class="bg-red-50 border-l-4 border-red-500 p-4">
+        <p class="font-semibold mb-2">❌ Don't Set Debounce Too Low</p>
+        <p>Very low values (< 100ms) defeat the purpose and can cause performance issues.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">How It Works</h2>
+    <p class="mb-4">The directive uses a two-way binding strategy:</p>
+
+    <h3 class="text-xl font-semibold mb-2">Model → View</h3>
+    <p class="mb-4">
+      An Angular <code>effect()</code> watches the signal and updates the input value whenever the signal changes
+      programmatically. This happens <strong>immediately</strong> (no debounce).
+    </p>
+
+    <h3 class="text-xl font-semibold mb-2">View → Model</h3>
+    <p class="mb-4">
+      The directive listens to <code>input</code> and <code>blur</code> events:
+    </p>
+    <ul class="list-disc list-inside space-y-2 mb-4">
+      <li><code>input</code> events are debounced using RxJS</li>
+      <li><code>blur</code> events update the signal immediately (no debounce)</li>
+      <li>Both streams are merged and deduplicated to prevent cyclic updates</li>
+    </ul>
+
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4">
+      <p class="font-semibold mb-2">🎯 Smart Deduplication</p>
+      <p>
+        The directive checks if the input value matches the current signal value before updating,
+        preventing infinite loops and unnecessary change detection cycles.
+      </p>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">API Reference</h2>
+
+    <h3 class="text-xl font-semibold mb-2">Selector</h3>
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code>input[debounceField], textarea[debounceField]</code>
+      <p class="mt-2">Apply to input or textarea elements.</p>
+    </div>
+
+    <h3 class="text-xl font-semibold mb-2 mt-6">Inputs</h3>
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code>@Input() debounceField: WritableSignal&lt;T&gt;</code>
+      <p class="mt-2">Required. The signal to bind to this field.</p>
+    </div>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code>@Input() debounceTime: number = 300</code>
+      <p class="mt-2">Debounce duration in milliseconds.</p>
+    </div>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code>@Input() transform?: (val: string) => T</code>
+      <p class="mt-2">Optional function to transform the value before updating the signal.</p>
+    </div>
+  </section>
+</div>
