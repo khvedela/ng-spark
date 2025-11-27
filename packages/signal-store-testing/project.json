@@ -29,8 +29,10 @@
       "defaultConfiguration": "production"
     },
     "nx-release-publish": {
+      "executor": "nx:run-commands",
       "options": {
-        "packageRoot": "dist/{projectRoot}"
+        "command": "npm publish --access public",
+        "cwd": "dist/packages/signal-store-testing"
       }
     },
     "test": {

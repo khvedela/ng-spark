@@ -2,7 +2,7 @@
 
 A type-safe testing utility library for NgRx Signal Store. Test your Signal Stores with ease using intuitive APIs for state management, computed signals, and method calls.
 
-[![npm version](https://badge.fury.io/js/%40ng-spark%2Fsignal-store-testing.svg)](https://www.npmjs.com/package/@ng-spark/signal-store-testing)
+[![npm version](https://badge.fury.io/js/@ng-spark%2Fsignal-store-testing.svg)](https://badge.fury.io/js/@ng-spark%2Fsignal-store-testing)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
