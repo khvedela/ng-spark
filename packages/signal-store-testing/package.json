@@ -1,6 +1,6 @@
 {
   "name": "@ng-spark/signal-store-testing",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Type-safe testing utilities for NgRx Signal Store",
   "keywords": [
     "angular",
