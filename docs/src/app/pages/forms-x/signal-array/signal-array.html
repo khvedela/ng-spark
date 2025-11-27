@@ -1,0 +1,156 @@
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <h1 class="text-4xl font-bold mb-4">SignalArray</h1>
+  <p class="text-lg text-gray-600 mb-8">
+    Reactive array management with familiar mutable-style API while maintaining immutability
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Overview</h2>
+    <p class="mb-4">
+      <code>SignalArray</code> provides a reactive wrapper around arrays in signals, offering familiar methods like
+      <code>push</code>, <code>remove</code>, and <code>move</code> while automatically maintaining immutability and
+      triggering change detection.
+    </p>
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+      <p class="font-semibold mb-2">💡 Key Benefits</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Familiar API - works like regular arrays</li>
+        <li>Automatic immutability - no spread operators needed</li>
+        <li>Type-safe - full TypeScript support</li>
+        <li>Reactive - integrates perfectly with Angular signals</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Basic Usage</h2>
+    <p class="mb-4">Wrap a standalone signal containing an array:</p>
+    <app-code-block [code]="basicUsageCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Creating from Parent Signal</h2>
+    <p class="mb-4">
+      The most common pattern is to create a SignalArray from a property of a parent signal.
+      This is perfect for form models:
+    </p>
+    <app-code-block [code]="fromParentCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Available Methods</h2>
+    <p class="mb-4">SignalArray provides a comprehensive API for array manipulation:</p>
+
+    <div class="overflow-x-auto mb-4">
+      <table class="min-w-full bg-white border border-gray-300">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-4 py-2 border">Method</th>
+            <th class="px-4 py-2 border">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="px-4 py-2 border"><code>push(...items)</code></td>
+            <td class="px-4 py-2 border">Add items to the end</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>insert(index, item)</code></td>
+            <td class="px-4 py-2 border">Insert item at specific index</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>removeAt(index)</code></td>
+            <td class="px-4 py-2 border">Remove item at index</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>removeBy(predicate)</code></td>
+            <td class="px-4 py-2 border">Remove items matching condition</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>updateAt(index, updater)</code></td>
+            <td class="px-4 py-2 border">Update item at index</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>move(from, to)</code></td>
+            <td class="px-4 py-2 border">Move item between indices</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>set(newArray)</code></td>
+            <td class="px-4 py-2 border">Replace entire array</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border"><code>clear()</code></td>
+            <td class="px-4 py-2 border">Remove all items</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <app-code-block [code]="methodsCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Reactive Properties</h2>
+    <p class="mb-4">Access reactive computed values:</p>
+    <app-code-block [code]="reactiveCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Use Cases</h2>
+
+    <h3 class="text-2xl font-semibold mb-3">Drag and Drop Lists</h3>
+    <p class="mb-4">Perfect for reorderable lists with CDK Drag & Drop:</p>
+    <app-code-block [code]="dragDropCode" language="typescript"></app-code-block>
+
+    <h3 class="text-2xl font-semibold mb-3 mt-8">Dynamic Form Fields</h3>
+    <p class="mb-4">Manage dynamic form arrays (like multiple phone numbers):</p>
+    <app-code-block [code]="dynamicFormsCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Best Practices</h2>
+    <app-code-block [code]="bestPracticesCode" language="typescript"></app-code-block>
+
+    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
+      <p class="font-semibold mb-2">⚠️ Important Notes</p>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Always use <code>items.value()</code> with parentheses to access the array</li>
+        <li>Never mutate the underlying signal directly</li>
+        <li>Use track functions in <code>&#64;for</code> loops for optimal performance</li>
+        <li>Properties like <code>length</code> and <code>at()</code> are signals, call them as functions</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">API Reference</h2>
+
+    <h3 class="text-xl font-semibold mb-2">Static Methods</h3>
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">SignalArray.from&lt;Parent, K&gt;(parent: WritableSignal&lt;Parent&gt;, key: K): SignalArray&lt;T&gt;</code>
+      <p class="mt-2">Creates a SignalArray from a parent signal's array property.</p>
+    </div>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">SignalArray.wrap&lt;T&gt;(signal: WritableSignal&lt;T[]&gt;): SignalArray&lt;T&gt;</code>
+      <p class="mt-2">Wraps a standalone signal containing an array.</p>
+    </div>
+
+    <h3 class="text-xl font-semibold mb-2 mt-6">Properties</h3>
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">value: Signal&lt;T[]&gt;</code>
+      <p class="mt-2">Read-only signal exposing the array. Use in templates: <code>items.value()</code></p>
+    </div>
+
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">length: Signal&lt;number&gt;</code>
+      <p class="mt-2">Reactive signal for array length. Use: <code>items.length()</code></p>
+    </div>
+
+    <h3 class="text-xl font-semibold mb-2 mt-6">Methods</h3>
+    <div class="mb-4 p-4 bg-gray-50 rounded">
+      <code class="text-sm">at(index: number): Signal&lt;T | undefined&gt;</code>
+      <p class="mt-2">Returns a signal for the item at the given index.</p>
+    </div>
+  </section>
+</div>

@@ -5,8 +5,15 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <!-- Use a helper method or template variable to handle the click logic cleanly -->
       <a mat-list-item routerLink="/" (click)="closeIfHandset(drawer)">Home</a>
+
+      <div mat-subheader>Forms-X</div>
+      <a mat-list-item routerLink="/docs/forms-x/getting-started" (click)="closeIfHandset(drawer)">Getting Started</a>
+      <a mat-list-item routerLink="/docs/forms-x/signal-array" (click)="closeIfHandset(drawer)">SignalArray</a>
+      <a mat-list-item routerLink="/docs/forms-x/form-tracker" (click)="closeIfHandset(drawer)">FormTracker</a>
+      <a mat-list-item routerLink="/docs/forms-x/async-validator" (click)="closeIfHandset(drawer)">SparkAsyncValidator</a>
+      <a mat-list-item routerLink="/docs/forms-x/debounce-field" (click)="closeIfHandset(drawer)">DebounceFieldDirective</a>
+
       <div mat-subheader>Signal Store Testing</div>
       <a mat-list-item routerLink="/docs/signal-store-testing/getting-started" (click)="closeIfHandset(drawer)">Getting Started</a>
       <a mat-list-item routerLink="/docs/signal-store-testing/api-reference" (click)="closeIfHandset(drawer)">API Reference</a>

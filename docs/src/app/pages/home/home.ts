@@ -14,5 +14,6 @@ import { CodeBlockComponent } from '../../shared/components/code-block/code-bloc
   styleUrl: './home.scss',
 })
 export class HomeComponent {
-  installCode = 'npm install @ng-spark/signal-store-testing --save-dev';
+  formsXInstallCode = 'npm install @ng-spark/forms-x';
+  signalStoreInstallCode = 'npm install @ng-spark/signal-store-testing --save-dev';
 }

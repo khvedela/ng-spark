@@ -1,0 +1,93 @@
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <h1 class="text-4xl font-bold mb-4">Getting Started with Forms-X</h1>
+  <p class="text-lg text-gray-600 mb-8">
+    Modern, reactive form utilities for Angular that embrace signals and immutability
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">What is Forms-X?</h2>
+    <p class="mb-4">
+      Forms-X is a collection of lightweight, signal-based utilities designed to make form handling
+      in Angular simpler, more reactive, and more maintainable. It provides four key utilities:
+    </p>
+    <ul class="list-disc list-inside space-y-2 mb-4">
+      <li><strong>SignalArray</strong> - Reactive array management with mutable-style API</li>
+      <li><strong>FormTracker</strong> - Automatic dirty state tracking for forms</li>
+      <li><strong>SparkAsyncValidator</strong> - Debounced async validation with loading states</li>
+      <li><strong>DebounceFieldDirective</strong> - Two-way binding with configurable debounce</li>
+    </ul>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Installation</h2>
+    <app-code-block [code]="installCmd" language="bash"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Quick Start</h2>
+    <p class="mb-4">Here's a quick example showing all utilities in action:</p>
+    <app-code-block [code]="quickStartCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Key Features</h2>
+    <app-code-block [code]="featuresCode" language="typescript"></app-code-block>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Learn More</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <a
+        routerLink="/docs/forms-x/signal-array"
+        class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
+      >
+        <h3 class="text-xl font-semibold mb-2">SignalArray</h3>
+        <p class="text-gray-600">Manage arrays reactively with familiar push, remove, and move operations</p>
+      </a>
+
+      <a
+        routerLink="/docs/forms-x/form-tracker"
+        class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
+      >
+        <h3 class="text-xl font-semibold mb-2">FormTracker</h3>
+        <p class="text-gray-600">Track form dirty state and changed fields automatically</p>
+      </a>
+
+      <a
+        routerLink="/docs/forms-x/async-validator"
+        class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
+      >
+        <h3 class="text-xl font-semibold mb-2">SparkAsyncValidator</h3>
+        <p class="text-gray-600">Debounced async validation with built-in loading states</p>
+      </a>
+
+      <a
+        routerLink="/docs/forms-x/debounce-field"
+        class="block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
+      >
+        <h3 class="text-xl font-semibold mb-2">DebounceFieldDirective</h3>
+        <p class="text-gray-600">Two-way binding with configurable debounce for better UX</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-3xl font-semibold mb-4">Why Forms-X?</h2>
+    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+      <h4 class="font-semibold mb-2">✨ Signal-Native</h4>
+      <p>Built from the ground up for Angular Signals - no wrappers, no adapters</p>
+    </div>
+    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+      <h4 class="font-semibold mb-2">🎯 Type-Safe</h4>
+      <p>Full TypeScript support with inference that just works</p>
+    </div>
+    <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-4">
+      <h4 class="font-semibold mb-2">🪶 Lightweight</h4>
+      <p>Zero dependencies, tree-shakeable, minimal bundle impact</p>
+    </div>
+    <div class="bg-orange-50 border-l-4 border-orange-500 p-4">
+      <h4 class="font-semibold mb-2">🧪 Well-Tested</h4>
+      <p>Comprehensive test coverage with real-world scenarios</p>
+    </div>
+  </section>
+</div>
