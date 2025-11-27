@@ -1,6 +1,6 @@
 {
   "name": "@ng-spark/forms-x",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Modern, signal-based form utilities for Angular including reactive array management, dirty state tracking, async validation, and debounced field binding",
   "keywords": [
     "angular",
