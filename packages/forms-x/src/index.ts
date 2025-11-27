@@ -1,1 +1,1 @@
-export * from './lib/forms-x/forms-x';
+export * from './lib/array-manager/signal-array';
