@@ -1,0 +1,22 @@
+{
+  "name": "@ng-spark/signal-store-testing",
+  "version": "1.0.0",
+  "description": "Type-safe testing utilities for NgRx Signal Store",
+  "keywords": [
+    "angular",
+    "ngrx",
+    "signals",
+    "signal-store",
+    "testing",
+    "jest",
+    "vitest",
+    "typescript"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^19.0.0 || ^20.0.0",
+    "@angular/core": "^19.0.0 || ^20.0.0",
+    "@ngrx/signals": "^19.0.0 || ^20.0.0"
+  },
+  "sideEffects": false
+}
