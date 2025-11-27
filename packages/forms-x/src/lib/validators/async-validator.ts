@@ -50,11 +50,10 @@ export class SparkAsyncValidator<T, E = unknown> {
     );
 
     const debouncedSignal = toSignal(debouncedSource$, {
-      initialValue: config.source(),
       injector,
     });
 
-    const resource = rxResource<E | null, T>({
+    const resource = rxResource<E | null, T | undefined>({
       params: () => debouncedSignal(),
       stream: ({ params: value }) => {
         if (value === '' || value === null || value === undefined) {
