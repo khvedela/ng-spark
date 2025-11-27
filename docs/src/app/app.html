@@ -1,0 +1,40 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <!-- Use a helper method or template variable to handle the click logic cleanly -->
+      <a mat-list-item routerLink="/" (click)="closeIfHandset(drawer)">Home</a>
+      <div mat-subheader>Signal Store Testing</div>
+      <a mat-list-item routerLink="/docs/signal-store-testing/getting-started" (click)="closeIfHandset(drawer)">Getting Started</a>
+      <a mat-list-item routerLink="/docs/signal-store-testing/api-reference" (click)="closeIfHandset(drawer)">API Reference</a>
+      <a mat-list-item routerLink="/docs/signal-store-testing/guides" (click)="closeIfHandset(drawer)">Guides</a>
+      <a mat-list-item routerLink="/docs/signal-store-testing/recipes" (click)="closeIfHandset(drawer)">Recipes & Patterns</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div class="logo">
+        <img src="logo.svg" alt="Logo" height="32" width="32">
+        <span class="logo-text">NgSpark</span>
+      </div>
+      <span class="spacer"></span>
+      <a mat-icon-button href="https://github.com/yourusername/ng-spark" target="_blank">
+        <mat-icon>code</mat-icon>
+      </a>
+    </mat-toolbar>
+    <div class="content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

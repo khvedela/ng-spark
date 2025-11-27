@@ -1,0 +1,54 @@
+<div class="doc-page">
+  <h1>Recipes & Patterns</h1>
+  <p class="lead">Common testing scenarios and best practices for Signal Stores.</p>
+
+  <mat-accordion multi>
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Async Data Loading (CRUD)</mat-panel-title>
+      </mat-expansion-panel-header>
+      
+      <div class="recipe-content">
+        <p>Testing async operations often involves checking <code>isLoading</code> states and verifying success/error outcomes. Use <code>waitForState</code> to handle the async nature cleanly.</p>
+        
+        <h3>Store Definition</h3>
+        <app-code-block [code]="crudStoreCode" language="typescript"></app-code-block>
+        
+        <h3>Test Implementation</h3>
+        <app-code-block [code]="crudTestCode" language="typescript"></app-code-block>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Authentication & Computed Signals</mat-panel-title>
+      </mat-expansion-panel-header>
+      
+      <div class="recipe-content">
+        <p>Auth stores often rely heavily on computed signals (e.g., <code>isAuthenticated</code>, <code>isAdmin</code>). The tester makes asserting these derived values straightforward.</p>
+        
+        <h3>Store Definition</h3>
+        <app-code-block [code]="authStoreCode" language="typescript"></app-code-block>
+        
+        <h3>Test Implementation</h3>
+        <app-code-block [code]="authTestCode" language="typescript"></app-code-block>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Debounced Search (RxMethods)</mat-panel-title>
+      </mat-expansion-panel-header>
+      
+      <div class="recipe-content">
+        <p>When testing RxMethods with operators like <code>debounceTime</code>, you can combine the tester with standard Jest/Jasmine timer mocks.</p>
+        
+        <h3>Store Definition</h3>
+        <app-code-block [code]="searchStoreCode" language="typescript"></app-code-block>
+        
+        <h3>Test Implementation</h3>
+        <app-code-block [code]="searchTestCode" language="typescript"></app-code-block>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -1,0 +1,30 @@
+<div class="doc-page">
+  <h1>Guides</h1>
+  <p class="lead">Deep dives and integration guides.</p>
+
+  <mat-tab-group dynamicHeight>
+    <mat-tab label="Jest">
+      <div class="tab-content">
+        <h3>Configuring Jest</h3>
+        <p>Ensure you have <code>jest-preset-angular</code> installed.</p>
+        <app-code-block [code]="jestConfig" language="typescript"></app-code-block>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Vitest">
+      <div class="tab-content">
+        <h3>Configuring Vitest</h3>
+        <p>The library works out of the box with Vitest using <code>jsdom</code> environment.</p>
+        <app-code-block [code]="vitestConfig" language="typescript"></app-code-block>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Spectator">
+      <div class="tab-content">
+        <h3>Using with Spectator</h3>
+        <p>Spectator is a great library for testing Angular. Here is how to combine it with Signal Store Tester.</p>
+        <app-code-block [code]="spectatorExample" language="typescript"></app-code-block>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

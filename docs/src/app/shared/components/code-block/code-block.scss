@@ -1,0 +1,46 @@
+.code-block-container {
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #282c34; /* One Dark background */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 16px 0;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    .language-label {
+      color: #abb2bf;
+      font-family: monospace;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    button {
+      color: #abb2bf;
+      
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  pre {
+    margin: 0;
+    padding: 16px;
+    overflow-x: auto;
+    
+    code {
+      font-family: 'Fira Code', 'Consolas', monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #abb2bf; /* Ensure default text color is light grey/white for readability */
+    }
+  }
+}

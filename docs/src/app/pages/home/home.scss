@@ -1,0 +1,90 @@
+.hero-section {
+  background: linear-gradient(135deg, #1976d2 0%, #64b5f6 100%);
+  color: white;
+  padding: 64px 24px;
+  text-align: center;
+  border-radius: 0 0 24px 24px;
+  margin: -24px -24px 48px -24px; /* Negative margin to break out of content-wrapper padding */
+  
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 32px;
+    opacity: 0.9;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 48px;
+
+    a {
+      padding: 8px 24px;
+      font-size: 1.1rem;
+    }
+  }
+
+  .install-box {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+  }
+}
+
+.features-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.feature-card {
+  height: 100%;
+  
+  .feature-icon {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    
+    mat-icon {
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    margin: -16px -16px 32px -16px;
+    
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+  }
+}

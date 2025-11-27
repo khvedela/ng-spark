@@ -1,0 +1,41 @@
+<div class="doc-page">
+  <h1>API Reference</h1>
+  <p class="lead">Complete reference for the @ng-spark/signal-store-testing library.</p>
+
+  <section>
+    <h2>Creation</h2>
+    <h3>createSignalStoreTester(store, options?)</h3>
+    <p>Creates a new tester instance wrapping the provided Signal Store.</p>
+    <app-code-block [code]="createTesterCode" language="typescript"></app-code-block>
+  </section>
+
+  <section>
+    <h2>State Management</h2>
+    <p>Utilities for reading, writing, and asserting state.</p>
+    <app-code-block [code]="stateCode" language="typescript"></app-code-block>
+  </section>
+
+  <section>
+    <h2>Computed Signals</h2>
+    <p>Access and test computed signals derived from the state.</p>
+    <app-code-block [code]="computedCode" language="typescript"></app-code-block>
+  </section>
+
+  <section>
+    <h2>Methods</h2>
+    <p>Invoke methods defined in the store with type safety.</p>
+    <app-code-block [code]="methodCode" language="typescript"></app-code-block>
+  </section>
+
+  <section>
+    <h2>Async Operations</h2>
+    <p>Wait for asynchronous state changes or effects.</p>
+    <app-code-block [code]="asyncCode" language="typescript"></app-code-block>
+  </section>
+
+  <section>
+    <h2>Time Travel</h2>
+    <p>Record and navigate state history for debugging complex flows.</p>
+    <app-code-block [code]="historyCode" language="typescript"></app-code-block>
+  </section>
+</div>
